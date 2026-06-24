@@ -15,14 +15,14 @@ function setTab(tipo) {
   if (tipo === 'usuario') {
     fieldsUsuario.classList.add('active');
     fieldsTecnico.classList.remove('active');
-    
+
     // Manage required attributes based on visible fields
     setRequired(fieldsUsuario, true);
     setRequired(fieldsTecnico, false);
   } else {
     fieldsTecnico.classList.add('active');
     fieldsUsuario.classList.remove('active');
-    
+
     // Manage required attributes based on visible fields
     setRequired(fieldsTecnico, true);
     setRequired(fieldsUsuario, false);
@@ -49,7 +49,7 @@ function setRequired(container, isRequired) {
 // Initial setup to ensure required fields are correct
 document.addEventListener('DOMContentLoaded', () => {
   setTab('usuario'); // Default to usuario
-  
+
   // Header scroll effect
   window.addEventListener('scroll', () => {
     const header = document.querySelector('.site-header');
@@ -63,15 +63,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Form Submission to Google Sheets
 // Reemplaza esta URL con la que te genere Google Apps Script
-const GOOGLE_SCRIPT_URL = 'URL_DE_TU_GOOGLE_APPS_SCRIPT_AQUI';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzzuB5pyAUeGDOhrFA9DmBhT8H-ycOQPWi9QLw9DF9Ukk9srXBSwyhLBZoFOm1X13gC/exec';
 
 function submitForm(e) {
   e.preventDefault();
-  
+
   const form = document.getElementById('fixoraForm');
   const btn = document.getElementById('submitBtn');
   const successMsg = document.getElementById('successMsg');
-  
+
   // Change button state
   const originalText = btn.innerHTML;
   btn.innerHTML = 'Enviando...';
@@ -79,10 +79,10 @@ function submitForm(e) {
 
   // Create form data object
   const formData = new FormData(form);
-  
+
   // En caso de que aún no tengas el script de Google configurado, simulamos el éxito.
   // Cuando tengas la URL, descomenta la parte de fetch y elimina el setTimeout.
-  
+
   /*
   fetch(GOOGLE_SCRIPT_URL, {
     method: 'POST',
@@ -103,18 +103,24 @@ function submitForm(e) {
   });
   */
 
-  // --- MOCK SUBMIT (Eliminar cuando actives fetch) ---
-  setTimeout(() => {
-    showSuccess();
-  }, 1500);
-  // --------------------------------------------------
-  
+  fetch(GOOGLE_SCRIPT_URL, {
+    method: 'POST',
+    body: formData
+  })
+    .then(() => showSuccess())
+    .catch(() => {
+      alert('Hubo un problema. Intenta de nuevo.');
+      btn.innerHTML = originalText;
+      btn.disabled = false;
+    });
+
+
   function showSuccess() {
     form.reset();
     successMsg.style.display = 'block';
     btn.innerHTML = originalText;
     btn.disabled = false;
-    
+
     // Hide success message after 5 seconds
     setTimeout(() => {
       successMsg.style.display = 'none';

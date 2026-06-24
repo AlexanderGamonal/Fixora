@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIXORA – Guía de Configuración Analytics & Sheets</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue: #08285f;
+      --orange: #ff7a00;
+      --light: #f0f4ff;
+      --muted: #64748b;
+      --border: #e2e8f0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #1e293b;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    /* ── PRINT BUTTON (hidden when printing) ── */
+    .print-bar {
+      background: var(--blue);
+      padding: 14px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: white;
+    }
+    .print-bar span { font-weight: 600; font-size: 14px; }
+    .btn-print {
+      background: var(--orange);
+      color: white;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 99px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-print:hover { background: #e06a00; }
+
+    /* ── DOCUMENT ── */
+    .page {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 40px 50px 60px;
+    }
+
+    /* ── COVER HEADER ── */
+    .doc-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 3px solid var(--blue);
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+    }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand-name {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--blue);
+      letter-spacing: -1px;
+    }
+    .brand-name .x { color: var(--orange); }
+    .brand-tagline { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .doc-meta { text-align: right; color: var(--muted); font-size: 12px; }
+    .doc-meta strong { display: block; font-size: 15px; color: var(--blue); }
+
+    /* ── INTRO BOX ── */
+    .intro {
+      background: var(--light);
+      border-left: 4px solid var(--blue);
+      padding: 16px 20px;
+      border-radius: 0 10px 10px 0;
+      margin-bottom: 36px;
+      font-size: 13px;
+      color: #334155;
+    }
+    .intro strong { color: var(--blue); }
+
+    /* ── SECTION HEADING ── */
+    .part-title {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--blue);
+      color: white;
+      padding: 14px 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      margin-top: 40px;
+    }
+    .part-title:first-of-type { margin-top: 0; }
+    .part-badge {
+      background: var(--orange);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+    .part-title h2 { font-size: 15px; font-weight: 700; }
+    .part-title p { font-size: 11px; opacity: 0.8; margin-top: 2px; }
+
+    /* ── STEPS ── */
+    .step-list { counter-reset: steps; }
+    .step {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+      align-items: flex-start;
+    }
+    .step-num {
+      background: var(--blue);
+      color: white;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      font-weight: 800;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .step-body h4 { font-size: 13px; font-weight: 700; color: var(--blue); margin-bottom: 4px; }
+    .step-body p { color: #475569; font-size: 12.5px; }
+    .step-body ul { padding-left: 18px; color: #475569; margin-top: 4px; }
+    .step-body li { margin-bottom: 3px; font-size: 12.5px; }
+
+    /* ── CODE BLOCK ── */
+    .code-block {
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 8px;
+      padding: 14px 18px;
+      font-family: 'Courier New', monospace;
+      font-size: 11.5px;
+      line-height: 1.7;
+      margin: 10px 0;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .code-comment { color: #64748b; }
+    .code-key { color: #93c5fd; }
+    .code-val { color: #fbbf24; }
+    .code-str { color: #86efac; }
+    .code-fn { color: #c084fc; }
+
+    /* ── HIGHLIGHT / NOTE ── */
+    .note {
+      display: flex;
+      gap: 10px;
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin: 12px 0;
+      font-size: 12px;
+      color: #92400e;
+    }
+    .note-icon { font-size: 16px; flex-shrink: 0; }
+    .note strong { color: #9a3412; }
+
+    .tip {
+      display: flex;
+      gap: 10px;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin: 12px 0;
+      font-size: 12px;
+      color: #166534;
+    }
+    .tip-icon { font-size: 16px; flex-shrink: 0; }
+
+    /* ── TABLE ── */
+    .results-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-size: 12.5px;
+    }
+    .results-table th {
+      background: var(--blue);
+      color: white;
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 700;
+    }
+    .results-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .results-table tr:nth-child(even) td { background: #f8fafc; }
+    .tag {
+      display: inline-block;
+      background: var(--light);
+      color: var(--blue);
+      border-radius: 99px;
+      padding: 2px 10px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    /* ── DIVIDER ── */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+
+    /* ── FOOTER ── */
+    .doc-footer {
+      border-top: 2px solid var(--border);
+      margin-top: 48px;
+      padding-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* ── PRINT STYLES ── */
+    @media print {
+      .print-bar { display: none !important; }
+      body { font-size: 12px; }
+      .page { padding: 30px 40px; max-width: 100%; }
+      .part-title { break-inside: avoid; }
+      .step { break-inside: avoid; }
+      .code-block { font-size: 10.5px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PRINT BAR -->
+  <div class="print-bar">
+    <span>📄 FIXORA – Guía de Configuración</span>
+    <button class="btn-print" onclick="window.print()">
+      🖨️ Guardar como PDF
+    </button>
+  </div>
+
+  <div class="page">
+
+    <!-- DOCUMENT HEADER -->
+    <div class="doc-header">
+      <div class="brand">
+        <div>
+          <div class="brand-name">FI<span class="x">X</span>ORA</div>
+          <div class="brand-tagline">Confianza que entra a tu hogar</div>
+        </div>
+      </div>
+      <div class="doc-meta">
+        <strong>Guía de Configuración MVP</strong>
+        Google Analytics 4 · Google Sheets<br>
+        Proyecto Universitario – 2026
+      </div>
+    </div>
+
+    <!-- INTRO -->
+    <div class="intro">
+      <strong>¿Para qué sirve esta guía?</strong> Te explica paso a paso cómo configurar
+      <strong>Google Analytics 4</strong> (para medir visitas) y <strong>Google Sheets</strong>
+      (para registrar los datos del formulario), de forma que puedas medir con precisión
+      los criterios de éxito de tu experimento MVP sin necesidad de un servidor propio.
+    </div>
+
+    <!-- ══════════════════════════════════════
+         PARTE 1: GOOGLE ANALYTICS
+    ══════════════════════════════════════ -->
+    <div class="part-title">
+      <div class="part-badge">1</div>
+      <div>
+        <h2>Google Analytics 4 — Medir visitas</h2>
+        <p>Qué mide: visitas totales, origen del tráfico, tiempo en página, dispositivos</p>
+      </div>
+    </div>
+
+    <div class="step-list">
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>Crear cuenta en GA4</h4>
+          <p>Ingresa a <strong>analytics.google.com</strong> con tu cuenta Gmail. Haz clic en <strong>"Empezar a medir"</strong>, escribe como nombre de cuenta <em>FIXORA MVP</em> y haz clic en <strong>"Siguiente"</strong>.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>Configurar la propiedad</h4>
+          <ul>
+            <li><strong>Nombre de la propiedad:</strong> Landing Page FIXORA</li>
+            <li><strong>Zona horaria:</strong> Perú (GMT-5)</li>
+            <li><strong>Moneda:</strong> Sol peruano</li>
+          </ul>
+          <p style="margin-top:6px">Haz clic en <strong>"Siguiente" → "Siguiente" → "Crear"</strong>.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>Obtener tu ID de medición</h4>
+          <p>En el Asistente de configuración, selecciona <strong>"Web"</strong>. Ingresa la URL de tu página y haz clic en <strong>"Crear flujo"</strong>. Aparecerá un código con este formato:</p>
+          <div class="code-block"><span class="code-val">G-XXXXXXXXXX</span>   ← Copia este código</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h4>Activar el código en <code>index.html</code></h4>
+          <p>Busca el bloque comentado (alrededor de la línea 9) y:</p>
+          <ul>
+            <li>Reemplaza las dos apariciones de <code>TU_ID_AQUI</code> con tu código <code>G-XXXXXXXXXX</code>.</li>
+            <li>Elimina los <code>&lt;!--</code> y <code>--&gt;</code> que rodean el bloque.</li>
+          </ul>
+          <div class="code-block"><span class="code-comment">&lt;!-- Resultado final debe verse así: --&gt;</span>
+&lt;<span class="code-key">script</span> async src=<span class="code-str">"https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"</span>&gt;&lt;/script&gt;
+&lt;<span class="code-key">script</span>&gt;
+  window.dataLayer = window.dataLayer || [];
+  <span class="code-fn">function</span> <span class="code-val">gtag</span>(){dataLayer.push(arguments);}
+  <span class="code-val">gtag</span>(<span class="code-str">'js'</span>, <span class="code-fn">new</span> Date());
+  <span class="code-val">gtag</span>(<span class="code-str">'config'</span>, <span class="code-str">'G-XXXXXXXXXX'</span>);
+&lt;/<span class="code-key">script</span>&gt;</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="tip">
+      <span class="tip-icon">💡</span>
+      <div>Una vez publicada la página, espera <strong>24-48 horas</strong> para ver datos acumulados. Para datos en tiempo real, ve a <strong>Informes → Tiempo real</strong> en tu panel de GA4.</div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- ══════════════════════════════════════
+         PARTE 2: GOOGLE SHEETS
+    ══════════════════════════════════════ -->
+    <div class="part-title">
+      <div class="part-badge">2</div>
+      <div>
+        <h2>Google Sheets — Registrar datos del formulario</h2>
+        <p>Qué mide: nombre, tipo (cliente/técnico), interés, servicio, distrito, preocupación</p>
+      </div>
+    </div>
+
+    <div class="step-list">
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>Crear la hoja de cálculo</h4>
+          <p>Ve a <strong>sheets.google.com</strong> y crea una hoja nueva. Nómbrala <em>FIXORA - Registros MVP</em>. En la <strong>Fila 1</strong>, escribe estos encabezados en cada columna:</p>
+          <div class="code-block">A: Fecha  |  B: Tipo  |  C: Nombre  |  D: Contacto
+E: Distrito  |  F: Servicio/Especialidad
+G: Preocupación/Experiencia  |  H: Interés</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>Abrir el Editor de Apps Script</h4>
+          <p>Dentro de la hoja, ve al menú <strong>Extensiones → Apps Script</strong>. Borra todo el contenido por defecto y pega el siguiente código:</p>
+          <div class="code-block"><span class="code-fn">function</span> <span class="code-val">doPost</span>(e) {
+  <span class="code-key">const</span> sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  <span class="code-key">const</span> params = e.parameter;
+
+  <span class="code-key">const</span> tipo        = params.tipo_usuario || <span class="code-str">''</span>;
+  <span class="code-key">const</span> nombre      = params.nombre || <span class="code-str">''</span>;
+  <span class="code-key">const</span> contacto    = params.contacto || <span class="code-str">''</span>;
+  <span class="code-key">const</span> distrito    = params.distrito || <span class="code-str">''</span>;
+  <span class="code-key">const</span> servicio    = params.servicio_interes || params.especialidad || <span class="code-str">''</span>;
+  <span class="code-key">const</span> preocupacion = params.preocupacion || params.experiencia || <span class="code-str">''</span>;
+  <span class="code-key">const</span> interes     = params.interes || <span class="code-str">''</span>;
+  <span class="code-key">const</span> fecha       = <span class="code-fn">new</span> Date().toLocaleString(<span class="code-str">'es-PE'</span>, { timeZone: <span class="code-str">'America/Lima'</span> });
+
+  sheet.appendRow([fecha, tipo, nombre, contacto, distrito, servicio, preocupacion, interes]);
+
+  <span class="code-fn">return</span> ContentService
+    .createTextOutput(JSON.stringify({ status: <span class="code-str">'ok'</span> }))
+    .setMimeType(ContentService.MimeType.JSON);
+}</div>
+          <p>Guarda el proyecto con el nombre <strong>FIXORA Script</strong> (ícono 💾 o Ctrl+S).</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>Publicar el script como aplicación web</h4>
+          <ul>
+            <li>Haz clic en <strong>"Implementar" → "Nueva implementación"</strong>.</li>
+            <li>Haz clic en el ícono ⚙️ → Selecciona <strong>"Aplicación web"</strong>.</li>
+            <li><strong>Ejecutar como:</strong> Yo (tu correo)</li>
+            <li><strong>Quién tiene acceso:</strong> <em>Cualquier persona</em> ← Muy importante</li>
+            <li>Haz clic en <strong>"Implementar"</strong> y luego en <strong>"Autorizar acceso"</strong>.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h4>Copiar la URL generada</h4>
+          <p>Aparecerá una pantalla con una <strong>URL de aplicación web</strong> de este estilo:</p>
+          <div class="code-block"><span class="code-str">https://script.google.com/macros/s/AKfycby.../exec</span>   ← Cópiala completa</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h4>Pegar la URL en <code>script.js</code></h4>
+          <p>Abre el archivo <code>script.js</code> y busca esta línea al inicio del archivo:</p>
+          <div class="code-block"><span class="code-key">const</span> GOOGLE_SCRIPT_URL = <span class="code-str">'URL_DE_TU_GOOGLE_APPS_SCRIPT_AQUI'</span>;</div>
+          <p>Reemplaza el texto entre comillas con la URL que copiaste en el paso anterior.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="note">
+      <span class="note-icon">⚠️</span>
+      <div>Cada vez que re-publiques el script (por ejemplo, si haces cambios), Google te genera una <strong>nueva URL</strong>. Asegúrate de actualizar la variable <code>GOOGLE_SCRIPT_URL</code> en <code>script.js</code> con la URL más reciente.</div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- RESUMEN FINAL -->
+    <h3 style="color: var(--blue); font-size: 15px; margin-bottom: 14px;">📊 ¿Qué métricas obtienes con cada herramienta?</h3>
+    <table class="results-table">
+      <thead>
+        <tr>
+          <th>Criterio de Éxito (Lean Canvas)</th>
+          <th>Herramienta</th>
+          <th>Dónde verlo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Más de 50 visitantes en la Landing Page</td>
+          <td><span class="tag">GA4</span></td>
+          <td>Informes → Adquisición → Visión general</td>
+        </tr>
+        <tr>
+          <td>Más del 60% completa el formulario</td>
+          <td><span class="tag">GA4</span> + <span class="tag">Sheets</span></td>
+          <td>Filas en Sheets ÷ Visitas en GA4 × 100</td>
+        </tr>
+        <tr>
+          <td>Más del 70% considera importante la validación de técnicos</td>
+          <td><span class="tag">Sheets</span></td>
+          <td>Columna H "Interés" → filtrar "Muy interesado"</td>
+        </tr>
+        <tr>
+          <td>Técnicos y usuarios manifiestan intención de uso</td>
+          <td><span class="tag">Sheets</span></td>
+          <td>Columna B "Tipo" → contar clientes y técnicos</td>
+        </tr>
+        <tr>
+          <td>Servicio más solicitado</td>
+          <td><span class="tag">Sheets</span></td>
+          <td>Columna F "Servicio" → ordenar y agrupar</td>
+        </tr>
+        <tr>
+          <td>Principal preocupación del cliente</td>
+          <td><span class="tag">Sheets</span></td>
+          <td>Columna G "Preocupación" → tabla dinámica</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- FOOTER -->
+    <div class="doc-footer">
+      <span>FI<span style="color:var(--orange)">X</span>ORA – Proyecto Académico 2026</span>
+      <span>Guía de Configuración Analytics &amp; Sheets · v1.0</span>
+    </div>
+
+  </div>
+</body>
+</html>
