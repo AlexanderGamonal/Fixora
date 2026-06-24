@@ -82,11 +82,25 @@ a {
   object-fit: contain;
 }
 
+.brand-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
 .brand-text {
   font-size: 24px;
   font-weight: 800;
   color: var(--blue-primary);
   letter-spacing: -0.5px;
+}
+
+.brand-tagline {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.2px;
+  margin-top: 3px;
 }
 
 .text-orange {
