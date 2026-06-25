@@ -11,7 +11,8 @@
   <link rel="apple-touch-icon" href="logo.png" />
 
   <!-- SEO básico -->
-  <meta name="description" content="Conecta tu hogar con técnicos verificados. Seguridad, transparencia y garantía en cada servicio." />
+  <meta name="description"
+    content="Conecta tu hogar con técnicos verificados. Seguridad, transparencia y garantía en cada servicio." />
   <meta name="keywords" content="técnicos verificados, gasfitería, electricidad, hogar, Lima, FIXORA" />
   <meta name="author" content="FIXORA" />
 
@@ -19,7 +20,8 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="FIXORA" />
   <meta property="og:title" content="FIXORA — Confianza que entra a tu hogar" />
-  <meta property="og:description" content="Conecta tu hogar con técnicos verificados. Calificaciones reales, garantía del servicio y seguimiento en tiempo real." />
+  <meta property="og:description"
+    content="Conecta tu hogar con técnicos verificados. Calificaciones reales, garantía del servicio y seguimiento en tiempo real." />
   <meta property="og:image" content="logo.png" />
   <meta property="og:url" content="https://alexandergamonal.github.io/Fixora/" />
   <meta property="og:locale" content="es_PE" />
@@ -27,17 +29,18 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="FIXORA — Confianza que entra a tu hogar" />
-  <meta name="twitter:description" content="Conecta tu hogar con técnicos verificados. Calificaciones reales, garantía del servicio y seguimiento en tiempo real." />
+  <meta name="twitter:description"
+    content="Conecta tu hogar con técnicos verificados. Calificaciones reales, garantía del servicio y seguimiento en tiempo real." />
   <meta name="twitter:image" content="logo.png" />
 
   <!-- Google Analytics Placeholder -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4L2NYJHVWM"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7EX03DR911"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
-    gtag('config', 'G-4L2NYJHVWM');
+    gtag('config', 'G-7EX03DR911');
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -253,16 +256,54 @@
 
           <div class="form-group">
             <label class="form-label">Distrito de residencia</label>
-            <select name="distrito" class="form-control" required>
+            <select name="distrito" id="distritoSelect" class="form-control" required onchange="toggleProvincia(this)">
               <option value="">Selecciona tu distrito</option>
-              <option>San Juan de Lurigancho</option>
-              <option>Los Olivos</option>
-              <option>Comas</option>
+              <option>Ancón</option>
               <option>Ate</option>
+              <option>Barranco</option>
+              <option>Breña</option>
+              <option>Carabayllo</option>
+              <option>Chaclacayo</option>
+              <option>Chorrillos</option>
+              <option>Cieneguilla</option>
+              <option>Comas</option>
+              <option>El Agustino</option>
+              <option>Independencia</option>
+              <option>Jesús María</option>
+              <option>La Molina</option>
+              <option>La Victoria</option>
+              <option>Lince</option>
+              <option>Los Olivos</option>
+              <option>Lurigancho</option>
+              <option>Lurín</option>
+              <option>Magdalena del Mar</option>
+              <option>Miraflores</option>
+              <option>Pachacámac</option>
+              <option>Pucusana</option>
+              <option>Pueblo Libre</option>
+              <option>Puente Piedra</option>
+              <option>Punta Hermosa</option>
+              <option>Punta Negra</option>
+              <option>Rímac</option>
+              <option>San Bartolo</option>
+              <option>San Borja</option>
+              <option>San Isidro</option>
+              <option>San Juan de Lurigancho</option>
+              <option>San Juan de Miraflores</option>
+              <option>San Luis</option>
+              <option>San Martín de Porres</option>
               <option>San Miguel</option>
-              <option>Surco</option>
-              <option>Otro distrito</option>
+              <option>Santa Anita</option>
+              <option>Santa María del Mar</option>
+              <option>Santa Rosa</option>
+              <option>Santiago de Surco</option>
+              <option>Surquillo</option>
+              <option>Villa El Salvador</option>
+              <option>Villa María del Triunfo</option>
+              <option value="provincia">Soy de provincia →</option>
             </select>
+            <input type="text" name="provincia" id="provinciaInput" class="form-control"
+              placeholder="Escribe tu ciudad o provincia" style="display:none; margin-top:10px;" />
           </div>
 
           <!-- CLIENT SPECIFIC FIELDS -->

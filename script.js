@@ -1,3 +1,17 @@
+// Provincia toggle logic
+function toggleProvincia(select) {
+  const provinciaInput = document.getElementById('provinciaInput');
+  if (select.value === 'provincia') {
+    provinciaInput.style.display = 'block';
+    provinciaInput.required = true;
+    provinciaInput.focus();
+  } else {
+    provinciaInput.style.display = 'none';
+    provinciaInput.required = false;
+    provinciaInput.value = '';
+  }
+}
+
 // Tab Navigation Logic
 function setTab(tipo) {
   // Update hidden field
@@ -63,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Form Submission to Google Sheets
 // Reemplaza esta URL con la que te genere Google Apps Script
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzzuB5pyAUeGDOhrFA9DmBhT8H-ycOQPWi9QLw9DF9Ukk9srXBSwyhLBZoFOm1X13gC/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxE13qrVH1Hd49teLYYXALqSb5DSLjWcB5WMahRp62chcBMWUkZTKpGo7RBCZNYcXPVVQ/exec';
 
 function submitForm(e) {
   e.preventDefault();
