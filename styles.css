@@ -196,9 +196,10 @@ a {
 
 .hero-copy p.lead {
   font-size: clamp(16px, 2vw, 20px);
-  color: var(--text-muted);
+  color: #1a2d50;
   margin-bottom: 40px;
   max-width: 540px;
+  font-weight: 500;
 }
 
 .hero-actions {
@@ -413,7 +414,8 @@ a {
 
 .section-desc {
   font-size: 18px;
-  color: var(--text-muted);
+  color: #1a2d50;
+  font-weight: 500;
   max-width: 600px;
   margin: 0 auto 60px;
 }
@@ -427,7 +429,7 @@ a {
 
 .step-card {
   background: white;
-  padding: 40px 30px;
+  padding: 44px 28px 36px;
   border-radius: var(--radius-lg);
   text-align: center;
   box-shadow: var(--shadow-sm);
@@ -438,33 +440,44 @@ a {
 }
 
 .step-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(8,40,95,.12);
   border-color: var(--orange-primary);
 }
 
+.step-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  display: block;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,.1));
+}
+
 .step-number {
-  width: 48px;
-  height: 48px;
+  width: 36px;
+  height: 36px;
   background: var(--blue-primary);
   color: white;
   border-radius: 50%;
   display: grid;
   place-items: center;
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 800;
-  margin: 0 auto 20px;
+  margin: 0 auto 16px;
 }
 
 .step-card h3 {
   color: var(--blue-800);
   margin-bottom: 12px;
-  font-size: 20px;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
 }
 
 .step-card p {
-  color: var(--text-muted);
+  color: #1a2d50;
   font-size: 15px;
+  line-height: 1.6;
+  font-weight: 500;
 }
 
 /* --- VALIDATION FORM SECTION --- */
@@ -500,9 +513,10 @@ a {
 
 .validation-copy p {
   font-size: 18px;
-  color: #cbd5e1;
-  margin-bottom: 30px;
+  color: #e8f0ff;
+  font-weight: 500;
   line-height: 1.7;
+  margin-bottom: 30px;
 }
 
 .validation-list {
@@ -515,7 +529,8 @@ a {
   gap: 12px;
   margin-bottom: 16px;
   font-size: 16px;
-  color: #f1f5f9;
+  font-weight: 500;
+  color: #e8f0ff;
 }
 
 .validation-list li svg {

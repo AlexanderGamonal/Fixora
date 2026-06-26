@@ -85,16 +85,12 @@ function doPost(e) {
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   const params = e.parameter;
 
-  const tipo         = params.tipo_usuario || '';
-  const nombre       = params.nombre || '';
-  const contacto     = params.contacto || '';
-  const distrito     = params.distrito || '';
-  const servicio     = params.servicio_interes || params.especialidad || '';
-  const preocupacion = params.preocupacion || params.experiencia || '';
-  const interes      = params.interes || '';
-  const fecha        = new Date().toLocaleString('es-PE', { timeZone: 'America/Lima' });
+  const nombre  = params.nombre  || '';
+  const correo  = params.correo  || '';
+  const mensaje = params.mensaje || '';
+  const fecha   = new Date().toLocaleString('es-PE', { timeZone: 'America/Lima' });
 
-  sheet.appendRow([fecha, tipo, nombre, contacto, distrito, servicio, preocupacion, interes]);
+  sheet.appendRow([fecha, nombre, correo, mensaje]);
 
   return ContentService
     .createTextOutput(JSON.stringify({ status: 'ok' }))

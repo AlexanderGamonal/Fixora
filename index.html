@@ -75,8 +75,7 @@
           confianza para resolver cualquier problema de forma rápida y segura.</p>
 
         <div class="hero-actions">
-          <a href="#validacion" class="btn-primary" onclick="setTab('usuario')">Necesito un técnico</a>
-          <a href="#validacion" class="btn-outline" onclick="setTab('tecnico')">Soy técnico</a>
+          <a href="#validacion" class="btn-primary">Quiero unirme a FIXORA</a>
         </div>
 
         <div class="trust-badges">
@@ -175,21 +174,25 @@
 
       <div class="steps-grid">
         <div class="step-card">
+          <div class="step-icon">🔍</div>
           <div class="step-number">1</div>
           <h3>Elige el servicio</h3>
           <p>Selecciona el tipo de reparación o instalación que necesitas en tu hogar.</p>
         </div>
         <div class="step-card">
+          <div class="step-icon">👤</div>
           <div class="step-number">2</div>
           <h3>Revisa perfiles</h3>
           <p>Mira la experiencia, fotos de trabajos anteriores y calificaciones reales del técnico.</p>
         </div>
         <div class="step-card">
+          <div class="step-icon">📋</div>
           <div class="step-number">3</div>
           <h3>Solicita seguro</h3>
           <p>Agenda la visita con la tranquilidad de que el técnico ha sido verificado.</p>
         </div>
         <div class="step-card">
+          <div class="step-icon">⭐</div>
           <div class="step-number">4</div>
           <h3>Evalúa</h3>
           <p>Tu calificación ayuda a mantener la calidad y confianza en la comunidad.</p>
@@ -201,177 +204,56 @@
     <section class="validation-section" id="validacion">
       <div class="validation-copy">
         <span class="badge" style="background: rgba(255,255,255,0.2); color: white;">Validación del MVP</span>
-        <h2>Únete a la lista de espera de FIXORA</h2>
-        <p>Estamos construyendo la plataforma que cambiará la forma en que contratamos servicios técnicos. Regístrate
-          para ser de los primeros en probarla.</p>
+        <h2>Únete a FIXORA</h2>
+        <p>Tu opinión vale. Ayúdanos a validar si FIXORA resuelve un problema real. Comparte tus datos y tu comentario — toma menos de un minuto.</p>
 
         <ul class="validation-list">
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="20 6 9 17 4 12" />
             </svg>
-            Acceso anticipado a la plataforma.
+            Tu voz define el futuro de la plataforma.
           </li>
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="20 6 9 17 4 12" />
             </svg>
-            Si eres técnico: más oportunidades de trabajo.
+            Contribuyes a un servicio más seguro para Lima.
           </li>
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="20 6 9 17 4 12" />
             </svg>
-            Si eres cliente: un hogar más seguro.
+            Recibirás acceso anticipado cuando lancemos.
           </li>
         </ul>
+
       </div>
 
       <div class="form-card">
         <div class="form-header">
-          <h3>Regístrate ahora</h3>
-          <p>Completa tus datos para formar parte del proyecto.</p>
-        </div>
-
-        <div class="form-tabs">
-          <div class="form-tab active" id="tab-usuario" onclick="setTab('usuario')">Soy Cliente</div>
-          <div class="form-tab" id="tab-tecnico" onclick="setTab('tecnico')">Soy Técnico</div>
+          <h3>Déjanos tus datos y un breve comentario.</h3>
+          <p>Tu información será usada únicamente para el proyecto académico.</p>
         </div>
 
         <form id="fixoraForm" onsubmit="submitForm(event)">
-          <!-- Hidden field to track user type -->
-          <input type="hidden" id="tipo_usuario" name="tipo_usuario" value="usuario">
 
-          <!-- Common Fields -->
           <div class="form-group">
-            <label class="form-label">Nombre y Apellidos</label>
-            <input type="text" name="nombre" class="form-control" placeholder="Ej: Ana Pérez" required>
+            <label class="form-label">Nombre <span style="color:var(--orange-primary)">*</span></label>
+            <input type="text" name="nombre" class="form-control" placeholder="Tu nombre completo" required>
           </div>
 
           <div class="form-group">
-            <label class="form-label">WhatsApp o Correo</label>
-            <input type="text" name="contacto" class="form-control" placeholder="Ej: 9XXXXXXXX o correo@ejemplo.com"
-              required>
+            <label class="form-label">Correo electrónico <span style="color:var(--orange-primary)">*</span></label>
+            <input type="email" name="correo" class="form-control" placeholder="tucorreo@ejemplo.com" required>
           </div>
 
           <div class="form-group">
-            <label class="form-label">Distrito de residencia</label>
-            <select name="distrito" id="distritoSelect" class="form-control" required onchange="toggleProvincia(this)">
-              <option value="">Selecciona tu distrito</option>
-              <option>Ancón</option>
-              <option>Ate</option>
-              <option>Barranco</option>
-              <option>Breña</option>
-              <option>Carabayllo</option>
-              <option>Chaclacayo</option>
-              <option>Chorrillos</option>
-              <option>Cieneguilla</option>
-              <option>Comas</option>
-              <option>El Agustino</option>
-              <option>Independencia</option>
-              <option>Jesús María</option>
-              <option>La Molina</option>
-              <option>La Victoria</option>
-              <option>Lince</option>
-              <option>Los Olivos</option>
-              <option>Lurigancho</option>
-              <option>Lurín</option>
-              <option>Magdalena del Mar</option>
-              <option>Miraflores</option>
-              <option>Pachacámac</option>
-              <option>Pucusana</option>
-              <option>Pueblo Libre</option>
-              <option>Puente Piedra</option>
-              <option>Punta Hermosa</option>
-              <option>Punta Negra</option>
-              <option>Rímac</option>
-              <option>San Bartolo</option>
-              <option>San Borja</option>
-              <option>San Isidro</option>
-              <option>San Juan de Lurigancho</option>
-              <option>San Juan de Miraflores</option>
-              <option>San Luis</option>
-              <option>San Martín de Porres</option>
-              <option>San Miguel</option>
-              <option>Santa Anita</option>
-              <option>Santa María del Mar</option>
-              <option>Santa Rosa</option>
-              <option>Santiago de Surco</option>
-              <option>Surquillo</option>
-              <option>Villa El Salvador</option>
-              <option>Villa María del Triunfo</option>
-              <option value="provincia">Soy de provincia →</option>
-            </select>
-            <input type="text" name="provincia" id="provinciaInput" class="form-control"
-              placeholder="Escribe tu ciudad o provincia" style="display:none; margin-top:10px;" />
+            <label class="form-label">Mensaje <span style="color:var(--orange-primary)">*</span></label>
+            <textarea name="mensaje" class="form-control" rows="4" placeholder="Cuéntanos tu opinión, experiencia o sugerencia sobre FIXORA..." required style="resize:vertical;"></textarea>
           </div>
 
-          <!-- CLIENT SPECIFIC FIELDS -->
-          <div id="fields-usuario" class="form-dynamic-section active">
-            <div class="form-group">
-              <label class="form-label">¿Qué servicio requieres con más frecuencia?</label>
-              <select name="servicio_interes" class="form-control">
-                <option value="">Selecciona</option>
-                <option>Gasfitería</option>
-                <option>Electricidad</option>
-                <option>Línea blanca</option>
-                <option>Computación</option>
-                <option>Instalaciones generales</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">Tu mayor preocupación al contratar un técnico es:</label>
-              <select name="preocupacion" class="form-control">
-                <option value="">Selecciona</option>
-                <option>Miedo a robos o estafas</option>
-                <option>Trabajos mal realizados</option>
-                <option>Cobros excesivos o sorpresas</option>
-                <option>Falta de garantía</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- TECHNICIAN SPECIFIC FIELDS -->
-          <div id="fields-tecnico" class="form-dynamic-section">
-            <div class="form-group">
-              <label class="form-label">¿Cuál es tu especialidad principal?</label>
-              <select name="especialidad" class="form-control">
-                <option value="">Selecciona tu oficio</option>
-                <option>Gasfitería</option>
-                <option>Electricidad</option>
-                <option>Reparación de línea blanca</option>
-                <option>Soporte de computadoras</option>
-                <option>Albañilería / Instalaciones</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">Años de experiencia</label>
-              <select name="experiencia" class="form-control">
-                <option value="">Selecciona</option>
-                <option>Menos de 1 año</option>
-                <option>1 a 3 años</option>
-                <option>3 a 5 años</option>
-                <option>Más de 5 años</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Common Fields -->
-          <div class="form-group" style="margin-top: 24px;">
-            <label class="form-label">¿Qué tan interesado(a) estás en usar FIXORA?</label>
-            <div class="radio-group">
-              <label class="radio-label"><input type="radio" name="interes" value="Muy interesado" required> Muy
-                interesado</label>
-              <label class="radio-label"><input type="radio" name="interes" value="Interesado"> Interesado</label>
-              <label class="radio-label"><input type="radio" name="interes" value="Neutral"> Neutral</label>
-              <label class="radio-label"><input type="radio" name="interes" value="Poco interesado"> Poco
-                interesado</label>
-            </div>
-          </div>
-
-          <button type="submit" class="btn-primary btn-submit" id="submitBtn">Enviar mis datos</button>
+          <button type="submit" class="btn-primary btn-submit" id="submitBtn">Enviar</button>
 
           <div class="privacy-notice">
             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
@@ -382,11 +264,12 @@
           </div>
 
           <div class="success-message" id="successMsg">
-            ¡Gracias por registrarte! Hemos guardado tu información.
+            ¡Gracias! Tu mensaje fue registrado correctamente.
           </div>
         </form>
       </div>
     </section>
+
   </main>
 
   <footer class="site-footer">
